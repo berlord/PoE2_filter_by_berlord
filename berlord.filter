@@ -44,6 +44,7 @@ PlayEffect Red
 MinimapIcon 0 Red Star
 
 
+
 #--------------------------
 # Gold
 #--------------------------
@@ -52,9 +53,6 @@ Hide
 AreaLevel >= 65
 StackSize < 500
 BaseType == "Gold"
-# SetTextColor 255 255 255
-# SetBorderColor 255 255 255
-# PlayEffect Orange Temp
 
 Hide
 AreaLevel >= 50
@@ -113,6 +111,7 @@ SetBorderColor 20 240 240
 SetFontSize 35
 
 
+
 # Support gems pop during campaign
 Show
 AreaLevel < 65
@@ -147,9 +146,9 @@ PlayEffect Cyan
 MinimapIcon 1 Cyan Triangle
 SetFontSize 40
 
-# Skill gems level 20 always pop
+# Skill gems level 19-20 always pop
 Show
-ItemLevel > 19
+ItemLevel >= 19
 BaseType "Uncut Skill Gem"
 SetTextColor 20 240 240
 SetBorderColor 20 240 240
@@ -297,7 +296,7 @@ BaseType "Gemcutter's Prism" "Vaal Orb" "Chaos Orb" "Regal Orb" "Artificer's Orb
 SetTextColor 255 207 132
 SetBorderColor 255 207 132
 SetBackgroundColor 76 51 12
-PlayAlertSound 2 200
+PlayAlertSound 2 100
 PlayEffect White
 MinimapIcon 2 White Circle
 SetFontSize 40
@@ -392,7 +391,6 @@ Class "Currency"
 BaseType "Scroll of Wisdom" "Shard"
 
 
-
 # Unknown currency
 Show
 Class "Currency"
@@ -437,25 +435,25 @@ SetFontSize 40
 # Waystones
 #--------------------------
 
+# Uncomment code below if you do not care about gold for selling low tier maps
 
+# Hide
+# WaystoneTier <= 5
+# AreaLevel >= 70
+# BaseType "Waystone"
+# Rarity <= Rare
 
-Hide
-WaystoneTier <= 5
-AreaLevel >= 70
-BaseType "Waystone"
-Rarity <= Rare
+# Hide
+# WaystoneTier <= 10
+# AreaLevel >= 75
+# BaseType "Waystone"
+# Rarity <= Rare
 
-Hide
-WaystoneTier <= 10
-AreaLevel >= 75
-BaseType "Waystone"
-Rarity <= Rare
-
-Hide
-WaystoneTier <= 13
-AreaLevel >= 79
-BaseType "Waystone"
-Rarity <= Rare
+# Hide
+# WaystoneTier <= 13
+# AreaLevel >= 79
+# BaseType "Waystone"
+# Rarity <= Rare
 
 Show
 BaseType "Waystone"
@@ -504,46 +502,20 @@ SetFontSize 35
 # Random Rares
 #--------------------------
 
-## Uncomment this rule to hide low level rares in high level zones
-
-# Hide
-# Rarity Rare
-# DropLevel < 50
-# AreaLevel > 72
-# SetFontSize 35
-
 Show
 Rarity Rare
 SetFontSize 40
 
 #--------------------------
-# Hide Rules (only high level), super light edition
+# Flasks
 #--------------------------
 
 Hide
-AreaLevel > 60
+AreaLevel >= 65
 Rarity <= Magic
 Class "Flasks"
 
-# Hide
-# AreaLevel > 10
-# Rarity <= Magic
-# DropLevel < 70
-# Class "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "One Hand Maces" "Two Hand Maces" "Quarterstaves" "Bows" "Crossbows"
 
-
-# Quivers have some relevant bases at 50+ so we treat them different
-Hide
-AreaLevel > 10
-Rarity <= Magic
-DropLevel < 50
-Class "Quivers"
-
-# Hide
-# AreaLevel > 10
-# Rarity <= Normal
-# DropLevel < 50
-# Class "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One Hand Maces" "Two Hand Maces" "Quarterstaves" "Bows" "Crossbows"
 
 #--------------------------
 # OPTIONAL RULES
@@ -553,40 +525,45 @@ Class "Quivers"
 ### OPTIONAL RULE: Hide random bases
 # REMOVE THE BASES YOU --DO-- WANT TO SEE BEFORE SETTING TO HIDE
 
+
 Show
-BaseType = "Rattling Sceptre" "Omen Sceptre"
-DropLevel > 80
-SetFontSize 50
-SetBackgroundColor 0 0 0 125
-SetBorderColor 125 25 225
-PlayEffect Purple
-MinimapIcon 2 Purple Circle
-PlayAlertSound 7 100
+Rarity = Normal
+BaseType "Stellar Amulet" "Spiked Club"
+SetTextColor 230 204 199
+SetBorderColor 255 255 255
+SetBackgroundColor 26 26 63
+SetFontSize 40
+
+Show
+Rarity = Normal
+ItemLevel >= 82
+BaseType "Silk Slippers" "Feathered Sandals" "Hunting Shoes"
+SetTextColor 230 204 199
+SetBorderColor 255 255 255
+SetBackgroundColor 26 26 63
+SetFontSize 40
+
+Show
+Rarity = Normal
+ItemLevel > 80
+BaseType "Attuned Wand" "Siphoning Wand" "Dualstring Bow"
+SetTextColor 230 204 199
+SetBorderColor 255 255 255
+SetBackgroundColor 26 26 63
+SetFontSize 40
 
 
 Hide
 Rarity <= Magic
-Class "Flasks" "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One Hand Maces" "Two Hand Maces" "Staves" "Quarterstaves" "Bows" "Crossbows" "Wands" "Sceptres" "Belts" "Rings" "Amulets"
-AreaLevel >= 10
-
-### OPTIONAL RULE: REDUCES BACKGROUND ON LOW LEVEL BASES
-
-# Show
-# Rarity <= Magic
-# Class "Flasks" "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One Hand Maces" "Two Hand Maces" "Staves" "Quarterstaves" "Bows" "Crossbows" "Wands" "Sceptres"
-# AreaLevel >= 65
-# DropLevel <= 50
-# SetBackgroundColor 0 0 0 125
-
-#--------------------------
-# Meta
-#--------------------------
-
-# If this thing crashes, time to update your filter!
-# This is here to prevent people to use this filter for AGES. Expert items will get removed eventually
-# Get a new filter from www.filterblade.xyz
-
-Show
-BaseType == "Expert Laced Boots"
+Class "Body Armours" "Helmets" "Boots" "Gloves" "Shields" "Foci" "Quivers" "One Hand Maces" "Two Hand Maces" "Staves" "Quarterstaves" "Bows" "Crossbows" "Wands" "Sceptres" "Belts" "Rings" "Amulets"
+AreaLevel >= 20
 
 
+
+
+
+
+# SetTextColor 212 50 13
+# SetBorderColor 255 255 255
+# SetBackgroundColor 26 26 63
+# SetFontSize 40
